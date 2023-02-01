@@ -1,0 +1,87 @@
+/* Save pallete colors to variables */
+:root {
+   --minion-yellow: #FCE762;
+   --ivory: #FFFDED;
+   --macaroni-and-cheese: #FFB17A;
+   --dark-slate-blue: #4F4789;
+   --dark-purple: #201335;
+}
+
+/* import fonts from google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h1, h2, h3, h4, p, label, button {
+    font-family: 'Roboto', sans-serif;
+}
+
+.page {
+    background-color: var(--dark-purple);
+
+}
+
+.header {
+    background-color: var(--dark-purple);
+    padding: 10px;
+}
+
+.section {
+    background-color: var(--dark-slate-blue);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0px 5px 10px #333333;
+}
+
+.inputSection {
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.inputSection label {
+    padding-bottom: 5px;
+}
+
+xmp {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+h1 {
+    color: var(--ivory);
+    text-align: center;
+}
+
+h2 {
+    color: var(--ivory);
+    text-align: center;
+    font-weight:lighter;
+}
+
+h3 {
+    color:var(--ivory);
+    text-align: center; 
+    font-weight: 600;
+    font-size: 20px;
+}
+
+p, label, h4 {
+    color:var(--ivory);
+    text-align: center; 
+}

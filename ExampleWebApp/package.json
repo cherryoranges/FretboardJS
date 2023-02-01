@@ -1,0 +1,24 @@
+{
+  "name": "fretjs",
+  "version": "1.0.0",
+  "description": "Fretboard Visualization in Vanilla JavaScript",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc309-fall-2021/js-library-dyagile1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csc309-fall-2021/js-library-dyagile1/issues"
+  },
+  "homepage": "https://github.com/csc309-fall-2021/js-library-dyagile1#readme",
+  "dependencies": {
+    "@tonaljs/tonal": "^4.6.5",
+    "express": "^4.17.1"
+  }
+}

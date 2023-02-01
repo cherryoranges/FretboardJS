@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="public/styles.css"/>
+    </head>
+    <body>
+        <div class="page">
+
+            <div class="header">
+                <h1>FretJS</h1>
+                <h2>Fretboard Visualization in Vanilla JavaScript</h2>
+            </div>
+
+            <div class="section">
+                <!-- Figure holding the fretboard visual -->
+
+                <h3>Visualize notes for guitars, basses, violins, and more</h3>
+                <figure id="fretboard1"></figure>
+                <p>Render any set of notes! Here is a C major chord on standard guitar</p>
+
+            </div>
+            
+            <br>
+            <h3>Examples</h3>
+            <br>
+            
+            <div class="section">
+                <!-- Figure holding the fretboard visual -->
+
+                <h3>Play Scales</h3>
+                <figure id="fretboard2"></figure>
+                
+                <div class="inputSection">
+                    <!-- Select key to play -->
+                    <label for="name">Choose Note (ex. "C3"):</label>
+                    <input type="text" id="keyOctaveInput" name="keyOctave" required
+                    minlength="2" maxlength="2" size="2">
+                </div>
+                
+
+                 <!-- Form to select scale to play -->
+                 <div class="inputSection">
+                    <label for="scaleListChoice">Choose a scale:</label>
+                    <input list="scaleList" id="scaleListChoice" name="scaleListChoice" />
+                    <datalist id='scaleList'></datalist>
+                </div>
+                    <button id="playButton">Play</button>
+                
+            </div>
+            
+            <br>
+            <br>
+
+            <div class="section">
+                <h3>CAGED System</h3>
+
+                <figure id="fretboard3"></figure>
+
+                <h4>Draw CAGED shapes along fretboard</h4>
+                <div class="inputSection">
+                    <label for="name">Choose Root Note:</label>
+                    <input type="text" id="cagedRootNote" name="cagedRootNote" required
+                    minlength="1" maxlength="1" size="1">
+                </div>
+                <button id="renderCagedButton">Draw</button>
+
+                <br>
+
+                <h4>Play C Major within a shape</h4>
+                <label for="cagedShapeChoice">Choose a shape:</label>
+                <input list="cagedShapeList" id="cagedShapeChoice" name="cagedShapeChoice" />
+                <datalist id='cagedShapeList'>
+                    <option value="C"></option>
+                    <option value="A"></option>
+                    <option value="G"></option>
+                    <option value="E"></option>
+                    <option value="D"></option>
+                </datalist>
+                <button id="playCagedButton">Play</button>                
+            </div>
+
+            <br>
+            <br>
+           
+
+            <div class="section">
+                
+                <h4>Play MIDI file</h4>
+                
+                <figure id="fretboard4"></figure>
+
+                <div class="inputSection">
+                    <p>Play Fur Elise</p>
+                    <button id="playMidiButton">Play</button>
+                </div>
+
+              
+            </div>
+            
+            <br/>
+            <h3>Documentation</h3>
+            <br>
+
+            <div id="docs" name="docs" class="section">
+                
+                <h4>Getting Started</h4>
+
+             <xmp>
+// Step 1: Import Fret.js library into your Webpage index.html
+
+// fretboard.js contains fretboard visualizer 
+<script type="text/javascript" src="public/FretJS/fretboard.js"/>
+
+// OPTIONAL: Extra functionality (For sound and color)
+
+// Import tonal.js requirement (music theory library)
+<script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"/>
+
+// notes.js contains helpers for naming notes
+<script type="text/javascript" src="public/FretJS/notes.js"></script>
+
+// audio.js contains helpers for playing tones
+<script type="text/javascript" src="public/FretJS/audio.js"></script>
+
+// Step 2: Create Figure element for the Fretboard visualizer
+<figure id="fretboard" />
+
+// Step 3: Customize Fretboard and Play with it in your own JS code 
+<script>
+    // Draw board 
+    const figureElement = document.getElementById(`fretboard`)
+    const fretboard = Fretboard(figureElement)
+    fretboard.drawBoard()
+    fretboard.drawStrings()
+
+    // Customize fretboard
+    fretboard.fretboardColor = '#40020b'
+    fretboard.height = 130
+    fretboard.fadeOutLength = 2000
+    
+    // Draw notes
+    fretboard.drawDot({ stringIndex: 0, fretIndex: 0, noteName: "E3", dotFill: 'red'})
+    // ... draw a bunch of notes then clear fretboard
+    fretboard.eraseDots() 
+</script>
+
+                </xmp>
+
+
+                <h4>API Reference</h4>
+
+                    <xmp>
+    // Fretboard Class Object.
+    // Instantiate one for each Fretboard figure
+    Fretboard {
+        // *** Customize Default Values ****
+
+        // tuning setup
+        _self.tuning = ["E4", "B3","G3","D3","A2","E2"]
+        _self.stringSizes = [1, 1, 2, 3, 4, 5,]
+        _self.fretCount = 15
+
+        // sizes of divs
+        _self.height = 130
+        _self.width = 500
+        _self.fretWidth = 4
+        _self.stringDivHeight = _self.height / _self.tuning.length
+        _self.fretDivWidth = _self.width / _self.fretCount
+        
+        // visual styling
+        _self.dotSize = 20
+        _self.dotFill = 'lightgreen'
+        _self.dotTextSize = 12
+        _self.dotTextColor = 'white'
+        _self.dotShadow = '2px 2px 5px #4d4d4d'
+        _self.dotBorder = '2px solid white'
+
+        _self.fretboardColor = '#40020b'
+
+        _self.fretColor = 'silver'
+        _self.openFretColor = 'darkgrey'
+
+        _self.stringColor = 'gold'
+        _self.stringOpacity = 0.6
+        _self.stringShadow = '2px 2px 5px #4d4d4d'
+
+        _self.fretIndicatorColor = 'silver'
+        _self.fretIndicatorSize = 10
+
+        _self.fadeOutLength = 2000
+
+        // ** API Reference **
+
+        // Draws the Fretboard board in selected figure
+        _self.drawBoard()
+
+        // Draws the Fretboard strings 
+        _self.drawStrings()
+
+        // Draw a Dot object. onBirth() callback executes immediately, 
+        // then onDeath() callback executes after lifespan millisecs
+        // Note: Dot is erased after lifespan millisecs if lifespan != null
+        _self.drawDot(dotObj, lifespan=null, onBirth=(dot)=>{}, onDeath=(dot)=>{}))
+
+        // Draws a list of Dot objects
+        _self.drawDots(dots, lifespan, onBirth=(dot)=>{}, onDeath=(dot)=>{})
+        
+        // Clears all Dots from Fretboard
+        _self.eraseDots()
+
+    }
+
+    // Dot object. Used by Fretboard to represent a single drawn Note
+    Dot {
+        // Mandatory
+        stringIndex: int,
+        fretIndex: int,
+
+        // Optional
+        noteName: str,
+        dotFill: str,
+        dotShadow: str,
+        dotBorder: str,
+        dotSize: int
+    }
+
+                </xmp>
+                    
+                </div>
+
+            </div>
+
+
+          
+        </div>
+     </body>
+
+    <!-- github.com/tonaljs/tonal library import (Provides music theory api) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tonaljs/tonal/browser/tonal.min.js"></script>
+
+    <!-- FretJS library imports -->
+    <script type="text/javascript" src="public/FretJS/fretboard.js"></script>
+    <script type="text/javascript" src="public/FretJS/notes.js"></script>
+    <script type="text/javascript" src="public/FretJS/audio.js"></script>
+    
+    <!-- midi parser for example playing midi file -->
+    <script src="https://unpkg.com/@tonejs/midi"></script>
+
+    <!-- My script file -->
+    <script type="text/javascript" src="public/exampleScript.js"></script>
+</html>
